@@ -16,7 +16,7 @@
                     <input 
                         type="text"
                         class="form-control"
-                        ngModel
+                        [ngModel]="initForm.lblProducto"
                         name="lblProducto"
                         placeholder="Nombre del producto"
                         required
@@ -36,10 +36,11 @@
                     <input 
                         type="number"
                         class="form-control"
-                        ngModel
+                        [ngModel]="initForm.lblPrecio"
                         name="lblPrecio"
                         placeholder="Precio del producto"
-                        required>
+                        required
+                        min="0">
                     <span 
                         class="form-text text-danger"
                         *ngIf="precioValido()">
@@ -55,9 +56,11 @@
                     <input 
                         type="number"
                         class="form-control"
-                        ngModel
+                        [ngModel]="initForm.lblExistencias"
                         name="lblExistencias"
-                        placeholder="Precio del producto"
+                        placeholder="Existencias del producto"
+                        customMin
+                        [minimo]="0"
                         required>
                 </div>
             </div>
