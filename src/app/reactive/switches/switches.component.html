@@ -1,7 +1,7 @@
 <h2>Template: Switches</h2>
 <hr>
 
-<form>
+<form [formGroup]="miFormulario" (ngSubmit)="guardar()">
 
     <!-- Radios -->
     <div class="row mb-3">
@@ -12,8 +12,8 @@
                 <input 
                     class="form-check-input" 
                     type="radio" 
-                    name="radioGenero" 
                     id="radioMasculino" 
+                    formControlName="genero"
                     value="M">
 
                 <label class="form-check-label" for="radioMasculino">
@@ -25,8 +25,8 @@
                 <input 
                     class="form-check-input" 
                     type="radio" 
-                    name="radioGenero" 
                     id="radioFemenino"
+                    formControlName="genero"
                     value="F">
 
                 <label class="form-check-label" for="radioFemenino">
@@ -46,6 +46,7 @@
                     class="form-check-input" 
                     type="checkbox" 
                     role="switch" 
+                    formControlName="notificaciones"
                     id="flexSwitchCheckChecked">
 
                 <label class="form-check-label" for="flexSwitchCheckChecked">
@@ -63,7 +64,8 @@
                 <input 
                     class="form-check-input" 
                     type="checkbox"
-                    id="flexCheckDefault">
+                    id="flexCheckDefault"
+                    formControlName="termAndCond">
                 <label class="form-check-label" for="flexCheckDefault">
                     He leído y acepto los términos y condiciones.
                 </label>
@@ -75,6 +77,7 @@
     <div class="row">
         <div class="col">
             <button 
+                type="submit"
                 class="btn btn-primary float-end">
                 Guardar
             </button>
@@ -83,7 +86,7 @@
 
 </form>
 
-<!-- 
+
 <h5>Valor del formulario</h5>
 <pre>{{ miFormulario.value | json }}</pre>
 <br>
@@ -94,7 +97,3 @@
 
 <h5>isValid</h5>
 <pre>{{ miFormulario.valid }}</pre>
-<br>
-
-<h5>Terminos</h5>
-<pre>{{miFormulario.controls?.terminos?.errors | json}} </pre> -->
