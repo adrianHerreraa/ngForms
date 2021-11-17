@@ -3,23 +3,15 @@
 
 <div class="row">
     <div class="col">
-        <form 
-            autocomplete="off" 
-            [formGroup]="miFormulario" 
-            (ngSubmit)="onSubmit()">
-            
+        <form autocomplete="off" [formGroup]="miFormulario" (ngSubmit)="onSubmit()">
+
             <!-- Nombre -->
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">Nombre</label>
                 <div class="col-sm-9">
-                    <input 
-                        type="text" 
-                        class="form-control" 
-                        placeholder="Nombre del usuario"
+                    <input type="text" class="form-control" placeholder="Nombre del usuario"
                         formControlName="lblNombre">
-                    <span 
-                        class="form-text text-danger" 
-                        *ngIf="fieldIsValid('lblNombre')">
+                    <span class="form-text text-danger" *ngIf="fieldIsValid('lblNombre')">
                         * Debe ser en formato de nombre y apellido
                     </span>
                 </div>
@@ -29,16 +21,30 @@
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">Email</label>
                 <div class="col-sm-9">
-                    <input 
-                        type="email" 
-                        class="form-control" 
-                        placeholder="Email del usuario"
-                        formControlName="lblEmail">
-                    <span 
-                        class="form-text text-danger"
-                        *ngIf="fieldIsValid('lblEmail')">
-                        * El correo es obligatorio.
+                    <input type="email" class="form-control" placeholder="Email del usuario" formControlName="lblEmail">
+
+                    <span class="form-text text-danger" *ngIf="fieldIsValid('lblEmail')">
+                        {{emailErrorMsg}}.
                     </span>
+
+                    <!-- <span 
+                        class="form-text text-danger"
+                        *ngIf="emailRequired()">
+                        * El correo es obligatorio.
+                    </span> -->
+
+                    <!-- <span 
+                        class="form-text text-danger"
+                        *ngIf="emailPattern()">
+                        * El email no tiene formato correcto.
+                    </span> -->
+
+                    <!-- <span 
+                        class="form-text text-danger"
+                        *ngIf="emailTomado()">
+                        * El email ya está en uso.
+                    </span> -->
+
                 </div>
             </div>
 
@@ -46,15 +52,9 @@
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">Username</label>
                 <div class="col-sm-9">
-                    <input 
-                        type="text" 
-                        class="form-control" 
-                        placeholder="Username"
-                        formControlName="lblUsername">
+                    <input type="text" class="form-control" placeholder="Username" formControlName="lblUsername">
 
-                    <span 
-                        class="form-text text-danger"
-                        *ngIf="fieldIsValid('lblUsername')">
+                    <span class="form-text text-danger" *ngIf="fieldIsValid('lblUsername')">
                         * El username no puede ser NeoMach.
                     </span>
                 </div>
@@ -64,15 +64,9 @@
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">Password</label>
                 <div class="col-sm-9">
-                    <input 
-                        type="password" 
-                        class="form-control" 
-                        formControlName="lblPassword"
-                        placeholder="Password">
+                    <input type="password" class="form-control" formControlName="lblPassword" placeholder="Password">
 
-                    <span 
-                        class="form-text text-danger"
-                        *ngIf="fieldIsValid('lblPassword')">
+                    <span class="form-text text-danger" *ngIf="fieldIsValid('lblPassword')">
                         * La contraseña debe ser mayor a 6 caracteres.
                     </span>
 
@@ -83,16 +77,11 @@
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">Confirmar contraseña</label>
                 <div class="col-sm-9">
-                    
-                    <input 
-                        type="password" 
-                        class="form-control" 
-                        formControlName="lblPassword2"
+
+                    <input type="password" class="form-control" formControlName="lblPassword2"
                         placeholder="Confirmar contraseña">
 
-                    <span 
-                        class="form-text text-danger"
-                        *ngIf="fieldIsValid('lblPassword2')">
+                    <span class="form-text text-danger" *ngIf="fieldIsValid('lblPassword2')">
                         * Las contraseñas deben ser iguales.
                     </span>
 
@@ -101,9 +90,7 @@
 
             <div class="row">
                 <div class="col">
-                    <button 
-                        class="btn btn-primary float-end"
-                        type="submit">
+                    <button class="btn btn-primary float-end" type="submit" [disabled]="miFormulario.pending">
                         Guardar
                     </button>
                 </div>
@@ -114,21 +101,22 @@
 </div>
 
 <p>Form valid: {{miFormulario.valid}}</p>
+<p>Form Status: {{miFormulario.status}}</p>
+<p>Form Pending: {{miFormulario.pending}}</p>
 <p>Form errors: {{miFormulario.valid}}</p>
 <pre>{{miFormulario.errors | json}}</pre>
 
 <!-- <h5>Nombre</h5>
-<pre>{{miFormulario.controls.lblNombre.errors | json}}</pre>
+<pre>{{miFormulario.controls.lblNombre.errors | json}}</pre> -->
 
 <h5>Email</h5>
 <pre>{{miFormulario.controls.lblEmail.errors | json}}</pre>
 
-<h5>Username</h5>
+<!-- <h5>Username</h5>
 <pre>{{miFormulario.controls.lblUsername.errors | json}}</pre> -->
 
-<p>Password</p>
-<pre>{{miFormulario.controls.lblPassword.errors | json}}</pre>
+<!-- <p>Password</p>
+<pre>{{miFormulario.controls.lblPassword.errors | json}}</pre> -->
 
-<p>Password 2</p>
-<pre>{{miFormulario.controls.lblPassword2.errors | json}}</pre>
-
+<!-- <p>Password 2</p>
+<pre>{{miFormulario.controls.lblPassword2.errors | json}}</pre> -->
